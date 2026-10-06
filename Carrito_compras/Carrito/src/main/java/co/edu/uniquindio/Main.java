@@ -1,17 +1,33 @@
 package co.edu.uniquindio;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+    public static void main(String[] args) {
+        Carrito<Producto> carrito = new Carrito<>("C2");
+        carrito.agregar(new Fruta("Manzana", 234));
+        carrito.agregar(new Fruta("Pera", 456));
+        carrito.agregar(new Moto("Pulsar", 4456000));
+        carrito.agregar(new Fruta("Uva", 800));
+
+        System.out.println("Más caro: " + carrito.obtenerProductoMayor());
+        System.out.println("Total: $" + carrito.calcularPrecioTotal());
+
+        System.out.println("\nRecorrido normal:");
+        for (Producto p : carrito) {
+            System.out.println(p);
+        }
+
+        System.out.println("\nRecorrido saltando de a 2:");
+        CarritoIterator<Producto> salto = carrito.iterator();
+        while (salto.hasNextSalto()) {
+            System.out.println(salto.saltarNext());
+        }
+
+        System.out.println("\nRecorrido hacia atrás:");
+        CarritoIterator<Producto> atras = carrito.iterator();
+        while (atras.hasNext()) atras.next();   // posicionarse al final
+        while (atras.tieneParaAtras()) {
+            System.out.println(atras.deParaAtras());
         }
     }
 }
