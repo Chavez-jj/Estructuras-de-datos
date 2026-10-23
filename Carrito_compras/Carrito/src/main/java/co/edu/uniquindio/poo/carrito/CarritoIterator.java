@@ -1,4 +1,4 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.poo.carrito;
 
 import java.util.Iterator;
 import java.util.List;
